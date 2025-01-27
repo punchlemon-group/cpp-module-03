@@ -9,8 +9,14 @@ class ScavTrap : public ClapTrap {
         ScavTrap(const std::string& name);
         ScavTrap(const ScavTrap& other);
         ~ScavTrap();
-        // std::string toString() const override;
         std::string getClassName() const;
+        void guardGate();
+        void setIsGateKeeperMode(bool tf);
+        bool getIsGateKeeperMode() const;
+        bool checkIsGateKeeperModeIsFalse() const;
+    private:
+        bool _isGateKeeperMode;
+        void _init();
 };
 
 #endif /* __SCAVTRAP_HPP__ */

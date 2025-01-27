@@ -8,6 +8,7 @@ int main() {
     zero.takeDamage(15);
     zero.beRepaired(20);
     zero.takeDamage(15);
+    zero.guardGate();
     zero.takeDamage(15);
     zero.beRepaired(20);
     zero.beRepaired(20);
@@ -18,4 +19,5 @@ int main() {
     zero.attack("SC4V-TP_2");
     zero.attack("SC4V-TP_3");
     zero.attack("SC4V-TP_4");
+    zero.guardGate();
 }
