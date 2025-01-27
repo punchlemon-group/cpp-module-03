@@ -1,23 +1,23 @@
 #include "ClapTrap.hpp"
 
 int main() {
-    ClapTrap test("test");
+    ClapTrap zero("CL4PTP_0");
 
-    test.attack("test2");
-    test.takeDamage(4);
-    test.beRepaired(2);
-    test.takeDamage(10);
-    test.takeDamage(15);
-    test.beRepaired(20);
-    test.takeDamage(15);
-    test.takeDamage(15);
-    test.beRepaired(20);
-    test.beRepaired(20);
-    test.beRepaired(20);
-    test.beRepaired(20);
-    test.beRepaired(20);
-    test.beRepaired(20);
-    test.attack("test3");
-    test.attack("test4");
-    test.attack("test5");
+    zero.attack("CL4PTP_1");
+    zero.takeDamage(4);
+    zero.beRepaired(2);
+    zero.takeDamage(10);
+    zero.takeDamage(15);
+    zero.beRepaired(20);
+    zero.takeDamage(15);
+    zero.takeDamage(15);
+    zero.beRepaired(20);
+    zero.beRepaired(20);
+    zero.beRepaired(20);
+    zero.beRepaired(20);
+    zero.beRepaired(20);
+    zero.beRepaired(20);
+    zero.attack("CL4PTP_2");
+    zero.attack("CL4PTP_3");
+    zero.attack("CL4PTP_4");
 }
