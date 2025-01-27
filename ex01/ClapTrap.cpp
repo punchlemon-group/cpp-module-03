@@ -93,29 +93,39 @@ unsigned int ClapTrap::subHitPoints(unsigned int subPoints) {
     return damage;
 }
 
-void ClapTrap::attack(const std::string& target) {
+bool ClapTrap::checkRemainingHitPoints() const {
     if (this->getHitPoints() == 0) {
         std::cout << *this << " has no hit points!" << std::endl;
-    } else if (this->getEnergyPoints() == 0) {
-        std::cout << *this << " has no energy points!" << std::endl;
+        return false;
     } else {
+        return true;
+    }
+}
+
+bool ClapTrap::checkRemainingEnergyPoints() const {
+    if (this->getEnergyPoints() == 0) {
+        std::cout << *this << " has no energy points!" << std::endl;
+        return false;
+    } else {
+        return true;
+    }
+}
+
+void ClapTrap::attack(const std::string& target) {
+    if (this->checkRemainingHitPoints() && this->checkRemainingEnergyPoints()) {
         std::cout << *this << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
         this->decrementEnergyPoints();
     }
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-    if (this->getHitPoints() == 0) {
-        std::cout << *this << " has no hit points!" << std::endl;
-    } else {
+    if (checkRemainingHitPoints()) {
         std::cout << *this << " takes " << this->subHitPoints(amount) << " points of damage!" << std::endl;
     }
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-    if (this->getEnergyPoints() == 0) {
-        std::cout << *this << " has no energy points!" << std::endl;
-    } else {
+    if (checkRemainingEnergyPoints()) {
         std::cout << *this << " is repaired " << amount << " points!" << std::endl;
         this->addHitPoints(amount);
         this->decrementEnergyPoints();

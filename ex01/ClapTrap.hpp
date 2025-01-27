@@ -25,10 +25,12 @@ class ClapTrap {
         void decrementEnergyPoints();
         void addHitPoints(unsigned int addPoints);
         unsigned int subHitPoints(unsigned int subPoints);
+        bool checkRemainingHitPoints() const;
+        bool checkRemainingEnergyPoints() const;
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
-        void printStatus() const;
+        virtual void printStatus() const;
     private:
         std::string _name;
         unsigned int _hitPoints;
