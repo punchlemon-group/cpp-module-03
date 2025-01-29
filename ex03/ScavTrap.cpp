@@ -70,7 +70,7 @@ void ScavTrap::_init() {
 
 void ScavTrap::_initByCopy(const ClapTrap& copy) {
     ClapTrap::_initByCopy(copy);
-    const ScavTrap& scavCopy = static_cast<const ScavTrap&>(copy);
+    const ScavTrap& scavCopy = dynamic_cast<const ScavTrap&>(copy);
     _setIsGateKeeperMode(scavCopy._getIsGateKeeperMode());
 }
 

@@ -1,7 +1,7 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main() {
-    FragTrap zero("FR4G-TP_0");
+    DiamondTrap zero("FR4G-TP_0");
     zero.takeDamage(4);
     zero.beRepaired(2);
     zero.takeDamage(10);
@@ -9,6 +9,7 @@ int main() {
     zero.beRepaired(20);
     zero.takeDamage(15);
     zero.highFiveGuys();
+    zero.whoAmI();
     zero.takeDamage(15);
     zero.beRepaired(20);
     zero.beRepaired(20);

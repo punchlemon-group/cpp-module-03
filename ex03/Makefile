@@ -11,12 +11,13 @@ $(addsuffix .cpp, \
 	ClapTrap \
 	ScavTrap \
 	FragTrap \
+	DiamondTrap \
 ) \
 
 OBJS = $(addprefix $(OUT_DIR)/, $(SRCS:.cpp=.o))
 DEPS = $(addprefix $(OUT_DIR)/, $(SRCS:.cpp=.o))
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wshadow
 CXXFLAGS = -std=c++98
 IFLAGS =
 LFLAGS =
