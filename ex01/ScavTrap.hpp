@@ -4,19 +4,37 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap {
-    public:
-        ScavTrap();
-        ScavTrap(const std::string& name);
-        ScavTrap(const ScavTrap& other);
-        ~ScavTrap();
-        std::string getClassName() const;
-        void guardGate();
-        void setIsGateKeeperMode(bool tf);
-        bool getIsGateKeeperMode() const;
-        bool checkIsGateKeeperModeIsFalse() const;
-    private:
-        bool _isGateKeeperMode;
-        void _init();
+public:
+    /* constructor */
+    ScavTrap();
+    ScavTrap(const std::string& name);
+    ScavTrap(const ScavTrap& copy);
+    ScavTrap& operator=(const ScavTrap& copy);
+
+    /* destructor */
+    ~ScavTrap();
+
+    /* general */
+    void guardGate();
+
+protected:
+    /* getter */
+    bool _getIsGateKeeperMode() const;
+
+    /* setter */
+    void _setIsGateKeeperMode(bool tf);
+
+    /* support */
+    bool _checkIsGateKeeperModeIsFalse() const;
+
+    /* override */
+    virtual void _initByCopy(const ClapTrap& copy);
+    virtual void _init();
+    std::string _getClassName() const;
+
+private:
+    /* variable */
+    bool _isGateKeeperMode;
 };
 
 #endif /* __SCAVTRAP_HPP__ */
