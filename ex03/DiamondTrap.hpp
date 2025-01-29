@@ -9,6 +9,8 @@ public:
     /* constructor */
     DiamondTrap();
     DiamondTrap(const std::string& name);
+    DiamondTrap(const DiamondTrap& copy);
+    DiamondTrap& operator=(const DiamondTrap& copy);
 
     /* destructor */
     ~DiamondTrap();

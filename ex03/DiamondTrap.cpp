@@ -14,6 +14,18 @@ DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name) {
     _initName();
 }
 
+DiamondTrap::DiamondTrap(const DiamondTrap& copy) : ClapTrap(copy) {
+    std::cout << _getClassName() << " copy constructor called" << std::endl;
+}
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& copy) {
+    std::cout << _getClassName() << " copy assignment operator called" << std::endl;
+    if (this != &copy) {
+        _initByCopy(copy);
+    }
+    return *this;
+}
+
 /* destructor */
 DiamondTrap::~DiamondTrap() {
     std::cout << _getClassName() << " destructor called" << std::endl;
@@ -28,6 +40,7 @@ void DiamondTrap::whoAmI() const {
 void DiamondTrap::attack(const std::string& target) {
 	ScavTrap::attack(target);
 }
+
 
 /* protected */
 /* getter */
