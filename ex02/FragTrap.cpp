@@ -12,8 +12,7 @@ FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
     _init();
 }
 
-FragTrap::FragTrap(const FragTrap& other)
-: ClapTrap(other) {
+FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy) {
     std::cout << _getClassName() << " copy constructor called" << std::endl;
 }
 
