@@ -1,100 +1,102 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
-: _name("Unknown"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-    std::cout << this->getClassName() << " default constructor called" << std::endl;
+/* public */
+/* construcotr */
+ClapTrap::ClapTrap() : _name("Unknown") {
+    std::cout << _getClassName() << " default constructor called" << std::endl;
+    _init();
 }
 
-ClapTrap::ClapTrap(const std::string& name)
-: _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-    std::cout << this->getClassName() << " parameterized constructor called" << std::endl;
+ClapTrap::ClapTrap(const std::string& name) : _name(name) {
+    std::cout << _getClassName() << " parameterized constructor called" << std::endl;
+    _init();
 }
 
-ClapTrap::ClapTrap(const ClapTrap& other)
-: _name(other.getName()), _hitPoints(other.getHitPoints()), _energyPoints(other.getEnergyPoints()), _attackDamage(other.getAttackDamage()) {
-    std::cout << this->getClassName() << " copy constructor called" << std::endl;
+ClapTrap::ClapTrap(const ClapTrap& copy) {
+    std::cout << _getClassName() << " copy constructor called" << std::endl;
+    _initByCopy(copy);
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
-    std::cout << this->getClassName() << " copy assignment operator called" << std::endl;
-    if (this != &other) {
-        this->setName(other.getName());
-        this->setHitPoints(other.getHitPoints());
-        this->setEnergyPoints(other.getEnergyPoints());
-        this->setAttackDamage(other.getAttackDamage());
+ClapTrap& ClapTrap::operator=(const ClapTrap& copy) {
+    std::cout << _getClassName() << " copy assignment operator called" << std::endl;
+    if (this != &copy) {
+        _initByCopy(copy);
     }
     return *this;
 }
 
+/* destructor */
+ClapTrap::~ClapTrap() {
+    std::cout << _getClassName() << " destructor called" << std::endl;
+}
+
+/* general */
+void ClapTrap::attack(const std::string& target) {
+    if (_checkRemainingHitPoints() && _checkRemainingEnergyPoints()) {
+        std::cout << *this << " attacks " << target << ", causing " << _getAttackDamage() << " points of damage!" << std::endl;
+        _decrementEnergyPoints();
+    }
+}
+
+void ClapTrap::takeDamage(unsigned int amount) {
+    if (_checkRemainingHitPoints()) {
+        std::cout << *this << " takes " << _subHitPoints(amount) << " points of damage!" << std::endl;
+    }
+}
+
+void ClapTrap::beRepaired(unsigned int amount) {
+    if (_checkRemainingEnergyPoints()) {
+        std::cout << *this << " is repaired " << amount << " points!" << std::endl;
+        _addHitPoints(amount);
+        _decrementEnergyPoints();
+    }
+}
+
+/* free */
 std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap) {
-    os << clapTrap.toString();
+    os << clapTrap._toString();
     return os;
 }
 
-ClapTrap::~ClapTrap() {
-    std::cout << this->getClassName() << " destructor called" << std::endl;
-}
 
-std::string ClapTrap::toString() const {
-    return this->getClassName() + ' ' + this->getName();
-}
-
-std::string ClapTrap::getClassName() const {
-    return "ClapTrap";
-}
-
-const std::string& ClapTrap::getName() const {
+/* protected */
+/* getter */
+const std::string& ClapTrap::_getName() const {
     return _name;
 }
 
-unsigned int ClapTrap::getHitPoints() const {
+unsigned int ClapTrap::_getHitPoints() const {
     return _hitPoints;
 }
 
-unsigned int ClapTrap::getEnergyPoints() const {
+unsigned int ClapTrap::_getEnergyPoints() const {
     return _energyPoints;
 }
 
-unsigned int ClapTrap::getAttackDamage() const {
+unsigned int ClapTrap::_getAttackDamage() const {
     return _attackDamage;
 }
 
-void ClapTrap::setName(const std::string& name) {
-    if (this->getName() != name) {
-        _name = name;
-    }
+/* setter */
+void ClapTrap::_setName(const std::string& name) {
+    _name = name;
 }
 
-void ClapTrap::setHitPoints(unsigned int hitPoints) {
+void ClapTrap::_setHitPoints(unsigned int hitPoints) {
     _hitPoints = hitPoints;
 }
 
-void ClapTrap::setEnergyPoints(unsigned int energyPoints) {
+void ClapTrap::_setEnergyPoints(unsigned int energyPoints) {
     _energyPoints = energyPoints;
 }
 
-void ClapTrap::setAttackDamage(unsigned int attackDamage) {
+void ClapTrap::_setAttackDamage(unsigned int attackDamage) {
     _attackDamage = attackDamage;
 }
 
-void ClapTrap::decrementEnergyPoints() {
-    if (this->getEnergyPoints() > 0) {
-        this->setEnergyPoints(this->getEnergyPoints() - 1);
-    }
-}
-
-void ClapTrap::addHitPoints(unsigned int addPoints) {
-    this->setHitPoints(this->getHitPoints() + addPoints);
-}
-
-unsigned int ClapTrap::subHitPoints(unsigned int subPoints) {
-    unsigned int damage = subPoints > this->getHitPoints() ? this->getHitPoints() : subPoints;
-    this->setHitPoints(this->getHitPoints() - damage);
-    return damage;
-}
-
-bool ClapTrap::checkRemainingHitPoints() const {
-    if (this->getHitPoints() == 0) {
+/* support */
+bool ClapTrap::_checkRemainingHitPoints() const {
+    if (_getHitPoints() == 0) {
         std::cout << *this << " has no hit points!" << std::endl;
         return false;
     } else {
@@ -102,8 +104,8 @@ bool ClapTrap::checkRemainingHitPoints() const {
     }
 }
 
-bool ClapTrap::checkRemainingEnergyPoints() const {
-    if (this->getEnergyPoints() == 0) {
+bool ClapTrap::_checkRemainingEnergyPoints() const {
+    if (_getEnergyPoints() == 0) {
         std::cout << *this << " has no energy points!" << std::endl;
         return false;
     } else {
@@ -111,32 +113,51 @@ bool ClapTrap::checkRemainingEnergyPoints() const {
     }
 }
 
-void ClapTrap::attack(const std::string& target) {
-    if (this->checkRemainingHitPoints() && this->checkRemainingEnergyPoints()) {
-        std::cout << *this << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
-        this->decrementEnergyPoints();
+void ClapTrap::_decrementEnergyPoints() {
+    if (_getEnergyPoints() > 0) {
+        _setEnergyPoints(_getEnergyPoints() - 1);
     }
 }
 
-void ClapTrap::takeDamage(unsigned int amount) {
-    if (checkRemainingHitPoints()) {
-        std::cout << *this << " takes " << this->subHitPoints(amount) << " points of damage!" << std::endl;
-    }
+void ClapTrap::_addHitPoints(unsigned int addPoints) {
+    _setHitPoints(_getHitPoints() + addPoints);
 }
 
-void ClapTrap::beRepaired(unsigned int amount) {
-    if (checkRemainingEnergyPoints()) {
-        std::cout << *this << " is repaired " << amount << " points!" << std::endl;
-        this->addHitPoints(amount);
-        this->decrementEnergyPoints();
-    }
+unsigned int ClapTrap::_subHitPoints(unsigned int subPoints) {
+    unsigned int damage = subPoints > _getHitPoints() ? _getHitPoints() : subPoints;
+    _setHitPoints(_getHitPoints() - damage);
+    return damage;
 }
 
-void ClapTrap::printStatus() const {
-    std::cout
-        << *this << " [ "
-        << "Hit Points: " << this->getHitPoints() << ", "
-        << "Energy Points: " << this->getEnergyPoints() << ", "
-        << "Attack Damage: " << this->getAttackDamage()
-        << " ] " << std::endl;
+std::string ClapTrap::_toString() const {
+    return _getClassName() + ' ' + _getName();
 }
+
+
+/* private */
+/* support */
+void ClapTrap::_init() {
+    _setHitPoints(10);
+    _setEnergyPoints(10);
+    _setAttackDamage(0);
+}
+
+void ClapTrap::_initByCopy(const ClapTrap& copy) {
+    _setName(copy._getName());
+    _setHitPoints(copy._getHitPoints());
+    _setEnergyPoints(copy._getEnergyPoints());
+    _setAttackDamage(copy._getAttackDamage());
+}
+
+std::string ClapTrap::_getClassName() const {
+    return "ClapTrap";
+}
+
+// void ClapTrap::_printAll() const {
+//     std::cout
+//         << *this << " [ "
+//         << "Hit Points: " << _getHitPoints() << ", "
+//         << "Energy Points: " << _getEnergyPoints() << ", "
+//         << "Attack Damage: " << _getAttackDamage()
+//         << " ] " << std::endl;
+// }
