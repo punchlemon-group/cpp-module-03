@@ -12,8 +12,7 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
     _init();
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other)
-: ClapTrap(other) {
+ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy) {
     std::cout << _getClassName() << " copy constructor called" << std::endl;
 }
 
@@ -70,8 +69,8 @@ void ScavTrap::_init() {
 }
 
 void ScavTrap::_initByCopy(const ClapTrap& copy) {
-    const ScavTrap& scavCopy = static_cast<const ScavTrap&>(copy);
     ClapTrap::_initByCopy(copy);
+    const ScavTrap& scavCopy = static_cast<const ScavTrap&>(copy);
     _setIsGateKeeperMode(scavCopy._getIsGateKeeperMode());
 }
 

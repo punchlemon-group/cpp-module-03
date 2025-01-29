@@ -12,7 +12,7 @@ public:
     ScavTrap& operator=(const ScavTrap& copy);
 
     /* destructor */
-    ~ScavTrap();
+    virtual ~ScavTrap();
 
     /* general */
     void guardGate();
@@ -30,7 +30,7 @@ protected:
     /* override */
     virtual void _initByCopy(const ClapTrap& copy);
     virtual void _init();
-    std::string _getClassName() const;
+    virtual std::string _getClassName() const;
 
 private:
     /* variable */
