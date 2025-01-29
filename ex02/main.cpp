@@ -1,15 +1,14 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main() {
-    ClapTrap zero("CL4P-TP_0");
-
-    zero.attack("CL4P-TP_1");
+    ScavTrap zero("SC4V-TP_0");
     zero.takeDamage(4);
     zero.beRepaired(2);
     zero.takeDamage(10);
     zero.takeDamage(15);
     zero.beRepaired(20);
     zero.takeDamage(15);
+    zero.guardGate();
     zero.takeDamage(15);
     zero.beRepaired(20);
     zero.beRepaired(20);
@@ -17,7 +16,8 @@ int main() {
     zero.beRepaired(20);
     zero.beRepaired(20);
     zero.beRepaired(20);
-    zero.attack("CL4P-TP_2");
-    zero.attack("CL4P-TP_3");
-    zero.attack("CL4P-TP_4");
+    zero.attack("SC4V-TP_2");
+    zero.attack("SC4V-TP_3");
+    zero.attack("SC4V-TP_4");
+    zero.guardGate();
 }

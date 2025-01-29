@@ -1,6 +1,6 @@
 .PHONY: all clean fclean re
 
-NAME = clapTrap
+NAME = scavTrap
 
 OUT_DIR = out
 SRCS_DIR = srcs
@@ -9,6 +9,7 @@ SRCS = \
 $(addsuffix .cpp, \
 	main \
 	ClapTrap \
+	ScavTrap \
 ) \
 
 OBJS = $(addprefix $(OUT_DIR)/, $(SRCS:.cpp=.o))
