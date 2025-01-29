@@ -133,9 +133,7 @@ std::string ClapTrap::_toString() const {
     return _getClassName() + ' ' + _getName();
 }
 
-
-/* private */
-/* support */
+/* override */
 void ClapTrap::_init() {
     _setHitPoints(10);
     _setEnergyPoints(10);
