@@ -20,9 +20,6 @@ public:
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
 
-    /* free */
-    friend std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap);
-
 protected:
     /* getter */
     const std::string& _getName() const;
@@ -57,5 +54,7 @@ private:
     unsigned int _energyPoints;
     unsigned int _attackDamage;
 };
+
+std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap);
 
 #endif /* __CLAPTRAP_HPP__ */
