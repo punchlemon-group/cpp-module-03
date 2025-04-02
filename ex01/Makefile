@@ -5,6 +5,8 @@ NAME = scavTrap
 OUT_DIR = out
 SRCS_DIR = srcs
 
+CXX = c++
+
 SRCS = \
 $(addsuffix .cpp, \
 	main \
