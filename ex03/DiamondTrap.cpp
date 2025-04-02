@@ -14,7 +14,7 @@ DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name) {
     _initName();
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap& copy) : ClapTrap(copy) {
+DiamondTrap::DiamondTrap(const DiamondTrap& copy) : ClapTrap(copy), FragTrap(copy), ScavTrap(copy) {
     std::cout << _getClassName() << " copy constructor called" << std::endl;
 }
 

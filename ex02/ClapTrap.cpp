@@ -52,10 +52,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
     }
 }
 
-/* free */
-std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap) {
-    os << clapTrap._toString();
-    return os;
+std::string ClapTrap::toString() const {
+    return _getClassName() + ' ' + _getName();
 }
 
 
@@ -129,10 +127,6 @@ unsigned int ClapTrap::_subHitPoints(unsigned int subPoints) {
     return damage;
 }
 
-std::string ClapTrap::_toString() const {
-    return _getClassName() + ' ' + _getName();
-}
-
 /* override */
 void ClapTrap::_init() {
     _setHitPoints(10);
@@ -159,3 +153,9 @@ std::string ClapTrap::_getClassName() const {
 //         << "Attack Damage: " << _getAttackDamage()
 //         << " ] " << std::endl;
 // }
+
+/* global */
+std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap) {
+    os << clapTrap.toString();
+    return os;
+}
